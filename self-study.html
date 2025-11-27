@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 30%;
+        }
+
+        #form label {
+            width: 100%;
+        }
+
+        #form input {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Login Form</h1>
+    <form id="form">
+        <label for="name">tên dn</label>
+        <input type="text" name="name" id="name" required placeholder="tên đăng nhâp">
+
+        <label for="pass">mk</label>
+        <input type="password" name="pass" id="pass" required placeholder="mật khẩu" minlength="6">
+
+        <button>đăng nhập</button>
+    </form>
+
+    <script defer>
+        document.getElementById("form").addEventListener("submit",(e)=>{
+            e.preventDefault();
+            alert(`Chào mừng, ${document.getElementById("name").value}!`)
+        })
+
+
+    </script>
+</body>
+
+</html>

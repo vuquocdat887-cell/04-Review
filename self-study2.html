@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 30%;
+        }
+
+        #form label {
+            width: 100%;
+        }
+
+        #form input {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>To-Do List</h1>
+    <form id="form">
+        <label for="name">tên nv</label>
+        <input type="text" name="name" id="name" required placeholder="tên nhiêm vu">
+
+        <button id="button">đăng nhập</button>
+    </form>
+    <h1>List of Tasks</h1>
+    <table id="table">
+        <th>nhiệm vụ</th>
+        <th>hành động</th>
+        <tbody id="tbody"></tbody>
+    </table>
+
+    <script defer>
+        const arr = [];
+        let id = null;
+        const form = document.getElementById("form");
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            if (id===null)
+                arr.push({ name: document.getElementById("name").value.trim() });
+            else{
+                arr[id].name= document.getElementById("name").value;
+                editId = null;
+                document.getElementById("button").textContent = "Thêm";
+            }
+
+                them();
+        })
+
+        function them() {
+            document.getElementById("tbody").innerHTML = "";
+            arr.forEach((a, b) => {
+                const c = document.createElement("tr");
+                c.innerHTML = `
+                    <td>${b + 1}</td>
+                    <td>${a.name}</td>
+                    <td><button onclick="sua(${b})">sua</button>
+                    <button onclick="xoa(${b})">xóa</button></td>
+                `;
+                document.getElementById("tbody").appendChild(c);
+            })
+        }
+
+        function sua(a) {
+                document.getElementById("name").value = arr[a].name;
+                id = a;
+                document.getElementById("button").textContent = "Cập nhật";
+        }
+        function xoa(a) {
+            arr.splice(a, 1);
+            them();
+        }
+    </script>
+
+</body>
+
+</html>
